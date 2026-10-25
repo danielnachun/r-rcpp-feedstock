@@ -12,7 +12,7 @@ source:
   sha256: 2746cf2fb188e5f0a84dbf5c8f68915b54564ed33e5754572f174e7b32e7f4f3
 
 build:
-  number: 0
+  number: 1
   rpaths:
     - lib/R/lib/
     - lib/
@@ -24,12 +24,9 @@ build:
 requirements:
   build:
     - cross-r-base {{ r_base }}    # [build_platform != target_platform]
-    - {{ compiler('c') }}          # [not win]
-    - {{ stdlib("c") }}            # [not win]
-    - {{ compiler('cxx') }}        # [not win]
-    - {{ compiler('m2w64_c') }}    # [win]
-    - {{ stdlib("m2w64_c") }}      # [win]
-    - {{ compiler('m2w64_cxx') }}  # [win]
+    - {{ compiler('c') }}
+    - {{ stdlib("c") }}
+    - {{ compiler('cxx') }}
     - {{ posix }}filesystem        # [win]
     - {{ posix }}make
     - {{ posix }}sed               # [win]
