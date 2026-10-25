@@ -10,6 +10,8 @@ source:
     - {{ cran_mirror }}/src/contrib/Rcpp_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/Rcpp/Rcpp_{{ version }}.tar.gz
   sha256: 2746cf2fb188e5f0a84dbf5c8f68915b54564ed33e5754572f174e7b32e7f4f3
+  patches:
+    - patches/0001-msvc-support.patch
 
 build:
   number: 1

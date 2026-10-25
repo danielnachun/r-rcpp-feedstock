@@ -1,0 +1,22 @@
+--- a/src/date.cpp
++++ b/src/date.cpp
+@@ -131,7 +131,11 @@
+ #include "fcntl.h"
+ #include "float.h"   /* for FLT_MAX and DBL_MAX */
+
++#ifdef _MSC_VER
++#include <io.h>                      // MSVC has no unistd.h; open()/read()/close() live here
++#else
+ #include <unistd.h>          // solaris needs this for read() and close()
++#endif
+
+
+ /* merged from private.h */
+@@ -1345,7 +1349,7 @@
+         tmp->tm_mday = (int) (idays + 1);
+         tmp->tm_isdst = 0;
+-#if ! (defined(__MINGW32__) || defined(__MINGW64__) || defined(__sun) || defined(sun) || defined(_AIX))
++#if ! (defined(__MINGW32__) || defined(__MINGW64__) || defined(_MSC_VER) || defined(__sun) || defined(sun) || defined(_AIX))
+ //#ifdef HAVE_TM_GMTOFF
+         tmp->tm_gmtoff = offset;
+ #endif
